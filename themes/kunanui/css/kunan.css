@@ -1,0 +1,886 @@
+/********************************************************************************************
+							GRID
+********************************************************************************************/
+.grid {
+	position: relative;
+	width: 100%;
+	overflow:auto;
+}
+.gridReference{ display: none; }
+/**         HEADER          */
+.grid .gridHeader {
+	/*position: fixed;*/
+	z-index: 2;
+}
+.grid .gridHeader ul {
+	list-style: none;
+	display: table-row;
+}
+.grid .gridHeader ul li {
+  cursor: auto;
+	list-style: none;
+	display: table-cell;
+	vertical-align: middle;
+	height: 26px;
+	border-bottom: medium none;
+  border-left: medium none;
+  border-top: medium none;
+}
+.gridBody .item {
+  display:block;
+  cursor: default;
+}
+/**          BODY           */
+.grid .gridBody {
+	position: relative;
+	/*top: 26px;*/
+}
+.grid .gridBody ul {
+	list-style: none;
+	display: table-row;
+	z-index: 1;
+	cursor: pointer;
+}
+.grid .gridBody ul li {
+	list-style: none;
+	display: table-cell;
+	vertical-align: middle;
+	height: 26px;
+	border-bottom: thin dotted #DDD;
+	padding-left: 2px;
+}
+/*          FOOTER       */
+.grid .gridFoot {
+	background-color: #E6E6E6;
+    bottom: -30px;
+    display: none;
+    width: 100%;
+    padding: 5px 0;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+
+.tableHeader {
+	overflow:hidden;
+}
+.tableHeader td {
+	vertical-align: middle;
+	height: 26px;
+}
+.tableHeader div {
+	vertical-align: middle;
+}
+.tableColumn {
+	overflow:hidden;
+}
+.tableBody {
+	overflow: scroll;
+	position:relative;
+	text-align: center;
+}
+.tableBody td {
+	text-align: center;
+}
+
+/********************************************************************************************
+							CUSTOM
+********************************************************************************************/
+.list {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	display: table;
+	width: 100%;
+}
+.list li {
+	list-style: none;
+	height: 30px;
+	font-size: 10pt;
+	display: table-row;
+	vertical-align: middle;
+}
+.list li a {
+	text-decoration: none;
+	display: block;
+	height: 30px;
+	padding-top: 10px;
+	padding-left: 10px;	
+	border-bottom: thin dotted #DDD;
+}
+input.correct { border: 1px solid #68B257;color: #68B257; }
+input.wrong { border: 1px solid #ff6666;color: #ff6666; }
+
+.divSearch{
+	position: relative;
+	display: inline;
+	height: 30px;
+}
+
+
+/********************************************************************************************
+							CONTENT
+********************************************************************************************/
+
+/* Structure */
+
+body {
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+	color: #333;	
+}
+
+/* Typography */
+	
+h2, h3, h4 {
+	margin: 0;
+	padding: 0 0 5px 0;
+	font-size: 12px;
+	font-weight: bold;
+}
+	
+h2 {
+	font-size: 14px;
+	font-weight: bold;
+}
+	
+h3 {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+h4 {
+	font-size: 11px;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+p {
+	margin: 0;
+	padding: 0 0 9px 0;
+}
+
+/* Lists */
+
+ul {
+	list-style: outside;
+	margin: 0 0 9px 16px;
+	list-style-type: disc;
+}
+
+/* Forms */
+
+textarea, input, select {
+	font-family:Tahoma, sans-serif;
+	font-size: 12px;
+	vertical-align: middle;		
+}
+
+form button {
+	vertical-align: middle;	
+}
+
+/********************************************************************************************
+							DOCK
+********************************************************************************************/
+
+#dockWrapper {
+	width: 100%;
+	display: block;
+	position: absolute;
+	/*bottom: 30px;*/
+	bottom: 0px;
+	left: 0px;
+}
+
+#dock {
+	position: relative;
+	padding: 3px 16px 0 6px;
+	bottom: 0;
+	left: 0;
+	min-height: 30px;
+	height: 30px;
+}
+#dock div { float: left; }
+#dockMini { float: left;cursor:pointer; }
+#dockMini span { cursor:pointer; }
+#dockClose { float: left;cursor:pointer; }
+#dockClose span { cursor:pointer; }
+
+*html #dock {
+	height: 30px; /* Used for IE 6.0 since it does not support min-height */
+}
+
+/********************************************************************************************
+							LAYOUT
+********************************************************************************************/
+
+#desktop {
+	position: relative;
+	min-width: 400px; /* Helps keep header content from wrapping */
+	height: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	cursor: default; /* Fix for issue in IE7. IE7 wants to use the I-bar text cursor */
+}
+
+#desktopHeader {
+	position: relative;
+	z-index: 100;
+}
+
+#desktopTitlebarWrapper {
+	position: relative;
+	min-height: 30px;
+	max-height: 30px;
+	/*background: #000000;*/
+	background: #222;
+	z-index: 999999999;
+}
+
+#desktopTitlebar {
+	/*padding: 7px 8px 6px 8px;*/
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	/*background: url(../images/logo.png) no-repeat;*/
+	background-position: left 0;
+	min-width: 100%;
+	max-width: 100%;
+	text-align: center;
+}
+
+#menUser div { position: relative; float: right; }
+
+#desktopTitlebar h1.applicationTitle {
+	display: none;
+	margin: 0;
+	padding: 0 5px 0 0;
+	font-size: 20px;
+	line-height: 25px;
+	font-weight: bold;
+	color: #fff;
+}
+
+#desktopTitlebar h2.tagline {
+	padding: 7px 0 0 0;	
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;    
+	color: #fff;    
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#desktopTitlebar h2.tagline .taglineEm {
+	color: #fff;
+	font-weight: bold;
+}
+
+/* Navbar */
+
+#desktopNavbar {
+	min-height: 30px;
+	max-height: 30px;
+	margin: 0 0px;
+	padding: 0 0px;
+	min-width: 100%;
+	max-width: 100%;
+}
+
+#titleBar {
+  line-height: 26px;
+	height: 26px;
+	font-size: 16px;
+	vertical-align: middle;
+}
+#titleBar .title { font-size: 16px; padding-left: 5px; }
+
+#toolBar {
+	height: 30px;
+	font-size: 12px;
+	float: right;
+	vertical-align: middle;
+}
+
+#pageWrapper {
+	position: relative;
+	overflow: hidden; /* This can be set to hidden or auto */
+	border-top: 1px solid #909090;
+	border-bottom: 1px solid #909090;
+	width: 100%;
+}
+
+/* Footer */
+
+#desktopFooterWrapper {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	overflow: hidden;
+}
+
+#desktopFooter {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	height: 24px;
+	padding: 6px 8px 0 8px;
+	background: #000;
+	color: #fff;
+}
+
+#nameOwner { text-transform: uppercase; }
+
+/********************************************************************************************
+							KUNAN
+********************************************************************************************/
+
+/* Reset */
+
+ul,ol,dl,li,dt,dd,h1,h2,h3,h4,h5,h6,form,body,html,p,blockquote,fieldset,input,object,iframe { margin: 0; padding: 0; }
+a img,:link img,:visited img { border: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+:focus { outline: none; }
+
+.Knotify{
+    background-color: #333;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    z-index: 999999999;
+}
+.Knotify p{
+    padding: 10px;
+    margin: 0;
+}
+.Knotify.error{
+    background-color: #F00;
+}
+ul.menu, #root-menu-div ul {
+    background-color: #FFFFFF;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+li.menumain {
+    float: left;
+    padding: 0 10px;
+}
+.menu li a{
+	display: block;
+	padding: 8px 10px;
+	text-decoration: none;
+}
+
+input {
+	height: 22px;
+}
+fieldset {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color;
+    border-right: 0 none;
+    border-style: outset none none;
+    border-width: 1px 0 0;
+    margin: 5px;
+    padding: 10px;
+}
+fieldset legend {
+    font-family: Tahoma,Arial;
+    font-size: 10pt;
+    font-weight: bold;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+#divSwitcher {
+	padding-left: 8px;
+    float: right;
+    height: 24px;
+    margin-top: 3px;
+    overflow: hidden;
+    padding: 0 5px;
+    text-align: right;
+}
+#divSpinner {
+    padding-left: 8px;
+    float: right;
+    height: 24px;
+    margin-top: 3px;
+    overflow: hidden;
+    padding: 0 5px;
+    text-align: right;
+}
+.iconTitleBar {
+    float: right;
+    height: 24px;
+    overflow: hidden;
+    padding: 0 5px;
+    text-align: right;
+    cursor: pointer;
+}
+.iconTitleBar span {
+    /*float: right;*/
+    height: 24px;
+    margin-top: 5px;
+    overflow: hidden;
+    text-align: right;
+    cursor: pointer;
+}
+.iconTitleBar label {
+    cursor: pointer;
+}
+#spinnerWrapper {
+	background: url("../images/spinner-placeholder.gif") no-repeat scroll 0 0 transparent;
+    height: 16px;
+    margin: 4px 5px 0;
+    width: 16px;
+}
+#spinner {
+	background: url("../images/spinner.gif") no-repeat scroll 0 0 transparent;
+    display: none;
+    height: 16px;
+    width: 16px;
+}
+input:focus, select:focus {
+	/*height: 24px;*/
+}
+.div-bottom {
+	line-height: 30px;
+	height: 30px;
+	vertical-align: middle;
+	padding: 0px 5px;
+}
+.gridBody .ui-button { height: 22px; width: 22px; }
+.gridBody .ui-button span { margin-top: -7px; }
+
+/********************************************************************************************
+							JQUERYUI
+********************************************************************************************/
+
+.ui-button { height: 26px; }
+.ui-icon-restore { background-position:-49px -82px; }
+.ui-icon-max { background-position:-32px -82px; }
+.ui-dialog .ui-dialog-titlebar-max {
+    height: 18px;
+    margin: -10px 0 0;
+    padding: 1px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    width: 19px;
+}
+.ui-dialog .ui-dialog-titlebar-min {
+    height: 18px;
+    margin: -10px 0 0;
+    padding: 1px;
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    width: 19px;
+}
+.ui-effects-transfer { border: 2px dotted gray; }
+
+/********************************************************************************************
+							CONTEXTMENU
+********************************************************************************************/
+
+#contextMenu{
+	display: none;
+	width: 165px;
+	padding: 6px;
+	background: #171717;
+	border: 1px solid #3e3e3e;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	position: absolute;
+	z-index: 99999999;
+}
+#contextMenu ul{
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	color: #6d6d6d;
+	background: #fff;
+	border: 1px solid #171717;
+	border-radius: 5px;
+	list-style: none outside none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+#contextMenu ul li{
+	line-height: 1.5em;
+	padding: 5px 5px 5px 25px;
+	font-size: 11px;
+	border-bottom: 1px solid #fff;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+#contextMenu ul li:hover{
+	background-color: #fff8cc;
+	border-bottom: 1px solid #ffe222;
+	color: #000;
+	cursor: pointer;
+}
+#contextMenu ul li a{
+	color: #6d6d6d;
+	display: block;
+}
+#contextMenu ul li.disabled, #contextMenu ul li.disabled a{
+	color: #bbbbbb;
+	cursor: default;
+}
+#contextMenu ul li.disabled:hover{
+	background: #fff;
+	border-bottom: 1px solid #fff;
+}
+#contextMenu ul li{
+	background-position: 3px 6px;
+	background-repeat: no-repeat;
+}
+#contextMenu ul li#menu_about{
+	background-position: 3px 5px;
+	background-image: url(../images/menu/web.png);
+}
+
+/********************************************************************************************
+							MAIN MENU
+********************************************************************************************/
+
+div.cmDiv{
+	/*border: 1px solid black;*/
+}
+.clickMenu{
+	/*font: bold 12px Verdana;*/
+	font: normal 12px Verdana;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+.clickMenu, .clickMenu ul{
+	list-style: none;
+}
+.clickMenu ul{
+	margin: 0;
+	border: 1px solid #999;
+	/*padding: 2px;
+	border: 1px solid black;*/
+	min-width: 100px; /* ie doesnt know this :/ */
+	//float: left;/*ie again*/
+	//width: 100%;/*and again*/
+}
+.clickMenu div.outerbox{
+	display: none;
+	min-width: 106px; /* firefox produces animation-flickering when the box is bigger than this :/ */
+}
+.clickMenu div.inner{
+	//top: 20px; /* for ie */
+	left: 0;
+	top: 28px;
+	margin: 0;
+}
+.clickMenu div.inner div.outerbox{
+	margin: 0;
+	left: 98px;
+	//left: 90px; /* for ie */
+	top: -3px;
+}
+.clickMenu li{
+	position: relative;
+	padding: 0 2px 0 2px;
+	height: 28px;
+	/*white-space: nowrap; does not really work in ie */
+}
+.clickMenu li.main{
+	float: left;
+	padding: 0 10px;
+	//height: 28px; /* for ie */
+}
+.clickMenu li.main li{
+	/*z-index: 2;*/
+	min-width: 78px;
+}
+.clickMenu li.hover{
+	/*z-index: 1 !important; /* the hover z-index has to be below the normal one the hovering items may be drawn over a submenu */
+	background-color: #aaa;
+}
+.clickMenu img.liArrow{
+	position: absolute;
+	right: 5px;
+	top: 0.41em;
+}
+.clickMenu a{
+	/*text-decoration: none;
+	color: black;*/
+    position: relative;
+    top: 5px;
+}
+/* thats for the shadowbox */
+html>body div.outerbox{
+	padding: 0 5px 5px 0;
+}
+html>body div.shadowbox1{
+	position: absolute;
+	right: 0;
+	bottom: 5px;
+	width: 5px;
+	height: 100%;
+	background: url('../images/myshadow.png') no-repeat right top;
+}
+html>body div.shadowbox2{
+	position: absolute;
+	bottom: 0;
+	right: 5px;
+	height: 5px;
+	width: 100%;
+	background: url('../images/myshadow.png') left bottom;
+}
+html>body div.shadowbox3{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 5px;
+	width: 5px;
+	background: url('../images/myshadow.png') no-repeat right bottom;
+}
+html>body .innerbox{
+	margin: 0;
+	display: inherit;
+}
+
+/********************************************************************************************
+							JQUERY EDITABLE-SELECT
+********************************************************************************************/
+
+input.editable-select {
+	background: #FFF url(../images/arrow-down.gif) right center no-repeat;
+	padding-right: 13px;
+}
+.editable-select-options {
+	position: absolute;
+	display: none;
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+	background: #FFF;
+	border: 1px solid #CCC;
+	z-index: 999999999;
+}
+.editable-select-iframe {
+	position: absolute;
+	background: #FFF;
+	z-index: 9;
+	display: none;
+}
+.editable-select-options ul {
+	margin: 0;
+	padding: 0;
+	z-index: 10;
+	list-style: none;
+	list-style-image: none;
+}
+.editable-select-options li {
+	cursor: default;
+	padding: 2px;
+}
+.editable-select-options li.selected {
+	background: #EAEAEA;
+}
+
+/********************************************************************************************
+							JQUERY VTIP.JS
+********************************************************************************************/
+
+p#vtip { display: none; position: absolute; padding: 10px; left: 5px; font-size: 12px; background-color: white; border: 1px solid #a6c9e2; -moz-border-radius: 5px; -webkit-border-radius: 5px; z-index: 9999 }
+p#vtip #vtipArrow { position: absolute; top: -10px; left: 5px }
+
+/********************************************************************************************
+							ADITIONAL CSS
+********************************************************************************************/
+
+.cursor { cursor:default;}
+
+
+
+
+
+
+.picture-box {
+	width: 150px;
+	height: 150px;
+	float: left;
+	border: 1px solid #CCC;
+	margin: 10px 10px 10px 20px;
+	padding: 5px;
+}
+
+.picture-box:hover {
+	border: 1px solid #333;
+}
+
+.changepicture {
+	margin: -5px -5px;
+	padding: 2px 5px;
+	float:left;
+	background-color: #333;
+	position: absolute;
+	z-index: 2;
+}
+
+.changepicture input {
+	filter: alpha(opacity=0);
+  opacity: 0;
+	float: left;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	cursor: pointer;
+	z-index: 3;
+}
+
+.changepicture span {
+	color: #FFF;
+	font-family: Tahoma;
+	font-size: 8pt;
+}
+
+.img-picture {
+	position: relative;
+	float: left;
+}
+/********************************************************************************************
+							FUENTES
+********************************************************************************************/
+.tahoma {
+	font-family: Tahoma;
+}
+.bg:hover{
+	background-image:url('../images/f2.png');
+	background-size:100% 100%;
+}
+.ui-pnotify.stack-topleft {
+	top: 15px;
+	left: 15px;
+	right: auto;
+}
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+.polygon:hover {stroke: red;fill: #469400;cursor: pointer;}
+p#vtipCem {
+	display: none;
+	position: absolute;
+	padding: 10px;
+	left: 5px;
+	font-size: 12px;
+	background-color: white;
+	border: 1px solid #a6c9e2;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	z-index: 9999
+}
+
+
+
+.ellipsis-text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+.label {
+  border-bottom-left-radius:3px;
+  border-bottom-right-radius:3px;
+  border-top-left-radius:3px;
+  border-top-right-radius:3px;
+  padding:1px 4px 2px;
+}
+.label, .badge {
+  background-color:#999999;
+  color:#FFFFFF;
+  font-size:11.844px;
+  font-weight:bold;
+  line-height:14px;
+  text-shadow:rgba(0, 0, 0, 0.246094) 0 -1px 0;
+  vertical-align:baseline;
+  white-space:nowrap;
+}
+.label-inverse, .badge-inverse {
+  background-color:#333333;
+}
+.label-info, .badge-info {
+  background-color:#3A87AD;
+}
+.label-important, .badge-important {
+  background-color:#B94A48;
+}
+.label-warning, .badge-warning {
+  background-color:#F89406;
+}
+.label-success, .badge-success {
+  background-color:#468847;
+}
+.fc-feriado{
+	background: none repeat scroll 0 0 #FFB13B;
+    /*border: 1px solid #FAD42E;*/
+    color: #fff;
+}
+.ui-tabs-vertical { width: 55em; }
+.ui-tabs-vertical .ui-tabs-nav { padding: .2em .1em .2em .2em; float: left; width: 12em; }
+.ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 0 -1px .2em 0; }
+.ui-tabs-vertical .ui-tabs-nav li a { display:block; }
+.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 0; padding-right: .1em; border-right-width: 1px; border-right-width: 1px; }
+.ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; /*width: 40em;*/}
+.styleTable { border-collapse: separate; }
+.styleTable TD { font-weight: normal !important; /*padding: .4em; */border-top-width: 0px !important; }
+.styleTable TH { text-align: center; /*padding: .8em .4em;*/ }
+.styleTable TD.first, .styleTable TH.first { border-left-width: 0px !important; }
+.ui-state-highlight_td {
+	border: 1px solid #fad42e; background: #fbec88 url(../images/jqueryui.redmond/ui-bg_flat_55_fbec88_40x100.png) 50% 50% repeat-x; color: #363636;
+}
+.datagrid-header-left {
+    float: left;
+}
+.datagrid-header-right {
+    float: right;
+}
+.datagrid-footer-left {
+    float: left;
+}
+.datagrid-footer-right {
+    float: right;
+}
+.ui-spinner-button {
+    cursor: default;
+    display: block;
+    font-size: 0.5em;
+    height: 50%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 16px;
+}

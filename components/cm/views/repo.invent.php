@@ -1,0 +1,170 @@
+<?php
+global $f;
+$f->library('pdf');
+class tras extends FPDF
+{
+	function Publicar($oper,$espa){
+		$prop = $espa["propietario"]["nomb"];
+		if($espa["propietario"]["tipo_enti"]=="P"){
+			$prop .= " ".$espa["propietario"]["appat"]." ".$espa["propietario"]["apmat"];
+		}	
+		$y = 25;	
+		//$this->Rect(146, $y, 10, 10);$this->SetXY(146,$y);$this->MultiCell(15,10,$item["espacio"]["fila"],'0','C');
+		$this->SetFont('Arial','',8);
+		$this->SetXY(10,5);$this->MultiCell(50,5,"SOCIEDAD DE BENEFICENCIA PUBLICA DE AREQUIPA",'0','C');
+		$this->SetXY(150,5);$this->MultiCell(50,5,"CEMENTERIO GENERAL DE LA APACHETA",'0','C');
+		$this->SetFont('Arial','BU',12);
+		$this->SetXY(0,$y);$this->MultiCell(0,5,"FICHA INVENTARIO DE MAUSOLEOS",'0','C');
+		$y+=10;
+		$this->SetFont('Arial','B',10);
+		$this->SetXY(10,$y);$this->MultiCell(0,5,"I. PROPIETARIO Y/O CONCESIONARIO DEL MAUSOLEO",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','',9);
+		$this->SetXY(10,$y);$this->MultiCell(190,5,$prop,'1','L');
+		$y+=10;
+		$this->SetFont('Arial','B',10);
+		$this->SetXY(10,$y);$this->MultiCell(0,5,"II. DIRECCION",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','',9);
+		$this->SetXY(10,$y);$this->MultiCell(100,5,$espa["propietario"]["domicilios"][0]["direccion"],'1','L');
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(120,$y);$this->MultiCell(35,5,"TELEFONO",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(150,$y);$this->MultiCell(35,5,$espa["propietario"]["telefonos"][0]["num"],'1','L');
+		$y+=10;
+		$this->SetFont('Arial','B',10);
+		$this->SetXY(10,$y);$this->MultiCell(0,5,"III. NOMBRE DEL MAUSOLEO",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','',9);
+		$this->SetXY(10,$y);$this->MultiCell(100,5,$espa["mausoleo"]["denominacion"],'1','L');
+		$y+=10;
+		$this->SetFont('Arial','B',10);
+		$this->SetXY(10,$y);$this->MultiCell(0,5,"IV. VENTA Y/O CONCESION DEL TERRENO",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(50,5,"DECRETO Y/O RESOLUCION:",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(65,$y);$this->MultiCell(35,5,"",'1','L');
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(130,$y);$this->MultiCell(20,5,"FECHA:",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(150,$y);$this->MultiCell(40,5,"",'1','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(20,5,"LOTE Nº",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(35,$y);$this->MultiCell(20,5,$espa["mausoleo"]["lote"],'1','L');
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(65,$y);$this->MultiCell(35,5,"AREA CONCEDIDA",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(100,$y);$this->MultiCell(20,5,$oper["construccion"]["largo"]*$oper["construccion"]["ancho"],'1','L');
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(130,$y);$this->MultiCell(30,5,"CAPACIDAD",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(160,$y);$this->MultiCell(20,5,$oper["construccion"]["capacidad"],'1','L');
+		$this->SetXY(183,$y);$this->MultiCell(15,5,"cuerpos",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(35,5,"OBSERVACIONES:",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(50,$y);$this->MultiCell(150,5,"",'1','L');
+		$y+=10;
+		$this->SetFont('Arial','B',10);
+		$this->SetXY(10,$y);$this->MultiCell(0,5,"V. AUTORIZACION PARA LA CONSTRUCCION DEL MAUSOLEO",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(50,5,"DECRETO Y/O RESOLUCION:",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(65,$y);$this->MultiCell(35,5,$oper["construccion"]["decreto"],'1','L');
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(130,$y);$this->MultiCell(20,5,"FECHA:",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(150,$y);$this->MultiCell(40,5,Date::format($oper["construccion"]["fecdec"]->sec, "d-m-Y"),'1','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(35,5,"OBSERVACIONES:",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(50,$y);$this->MultiCell(150,5,$oper["ejecucion"]["observ"],'1','L');
+		$y+=10;
+		$this->SetFont('Arial','B',10);
+		$this->SetXY(10,$y);$this->MultiCell(0,5,"VI. AMPLIACION DE CAPACIDAD DE MAUSOLEO",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(50,5,"DECRETO Y/O RESOLUCION:",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(65,$y);$this->MultiCell(35,5,$oper["ampliacion"]["decreto"],'1','L');
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(130,$y);$this->MultiCell(20,5,"FECHA:",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(150,$y);$this->MultiCell(40,5,Date::format($oper["ampliacion"]["fecdec"]->sec, "d-m-Y"),'1','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(60,5,"Nº DE CUERPOS ADICIONALES",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(80,$y);$this->MultiCell(20,5,$oper["ampliacion"]["capacidad"],'1','L');
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(120,$y);$this->MultiCell(40,5,"CAPACIDAD TOTAL",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(160,$y);$this->MultiCell(20,5,"--",'1','L');
+		$this->SetXY(183,$y);$this->MultiCell(15,5,"cuerpos",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','B',10);
+		$this->SetXY(10,$y);$this->MultiCell(0,5,"VII. RECEPCION DEL MAUSOLEO",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(40,5,"RECEPCIONADO POR",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(55,$y);$this->MultiCell(100,5,$oper["ejecucion"]["recibido"]["nomb"],'1','L');
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(160,$y);$this->MultiCell(20,5,"FECHA:",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(180,$y);$this->MultiCell(20,5,Date::format($oper["ejecucion"]["fecfin"]->sec, "d-m-Y"),'1','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(100,5,"OBSERVACIONES REALIZADAS POR EL RECEPCIONISTA:",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','',9);
+		$this->SetXY(15,$y);$this->MultiCell(185,5,$oper["ejecucion"]["observ"],'1','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(40,5,"EXCESO DE AREA",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(55,$y);$this->MultiCell(20,5,"",'1','L');	
+		$this->SetXY(77,$y);$this->MultiCell(15,5,"mt2",'0','L');
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(115,$y);$this->MultiCell(45,5,"EXCESO DE CAPACIDAD",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(160,$y);$this->MultiCell(20,5,"",'1','L');	
+		$this->SetXY(182,$y);$this->MultiCell(15,5,"cuerpos",'0','L');
+		$y+=10;
+		$this->SetFont('Arial','B',9);
+		$this->SetXY(15,$y);$this->MultiCell(15,5,"OTRAS:",'0','L');
+		$this->SetFont('Arial','',9);
+		$this->SetXY(30,$y);$this->MultiCell(170,5,$oper["ejecucion"]["observ"],'1','L');	
+	}
+	function Footer()
+	{
+    	//Footer de la pagina
+    	$this->SetXY(220,-15);
+    	$this->SetFont('Arial','I',8);
+    	$this->SetTextColor(128);
+    	$this->Cell(0,10,$this->PageNo(),0,0,'C');
+    	$this->SetXY(29,-15);
+    	$this->SetFont('Arial','I',8);
+    	$this->SetTextColor(128);
+    	$this->Cell(0,10,date("d-m-Y"),0,0,'L');
+	} 
+	 
+}
+
+$pdf=new tras('P','mm','A4');
+$pdf->SetMargins(15,39.5,0); 
+$pdf->SetTitle("reporte");
+$pdf->SetAutoPageBreak(false,0); 
+$pdf->Open();
+$pdf->AddPage();
+$pdf->Publicar($oper,$espa);
+$pdf->SetLeftMargin(25);
+$pdf->Output();
+
+?>

@@ -1,0 +1,30 @@
+Wed Apr 13 11:36:37.544 [conn114] query beneficencia.cm_operaciones query: { $query: { asignacion: { $exists: true }, ocupante._id: ObjectId('5600235511298c2009000032') }, $orderby: { _id: -1 } } ntoreturn:0 ntoskip:0 nscanned:23630 keyUpdates:0 locks(micros) r:140678 nreturned:1 reslen:1313 140ms
+Wed Apr 13 11:36:37.700 [conn145] query beneficencia.cm_operaciones query: { $query: { espacio._id: ObjectId('55faea7011298c6009000029') }, $orderby: { _id: -1 } } ntoreturn:0 ntoskip:0 nscanned:23630 keyUpdates:0 locks(micros) r:133152 nreturned:8 reslen:10199 133ms
+Wed Apr 13 11:36:58.714 [conn145] query beneficencia.cm_operaciones query: { $query: { espacio._id: ObjectId('55faea7011298c6009000029') }, $orderby: { _id: -1 } } ntoreturn:0 ntoskip:0 nscanned:23630 keyUpdates:0 locks(micros) r:120496 nreturned:8 reslen:10199 120ms
+Wed Apr 13 11:37:03.284 [conn192] update beneficencia.cj_cuentas_cobrar query: { _id: ObjectId('5600235a11298c2009000035') } update: { $set: { estado: "X" } } idhack:1 nupdated:1 fastmod:1 keyUpdates:0 locks(micros) w:98346 155ms
+Wed Apr 13 11:37:03.425 [conn192] VirtualProtect for c:/mongo/data/beneficencia.4 chunk 4337 failed with errno:1455 The paging file is too small for this operation to complete. (chunk size is 67108864, address is 43c4000000) in mongo::makeChunkWritable, terminating
+Wed Apr 13 11:37:03.425 [conn192]  beneficencia.ac_log Fatal Assertion 16362
+Wed Apr 13 11:37:10.414 [conn192] mongod.exe    ...\src\mongo\util\stacktrace.cpp(167)                           mongo::printStackTrace+0x3e
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\util\assert_util.cpp(131)                          mongo::fassertFailed+0x43
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\util\mmap_win.cpp(264)                             mongo::makeChunkWritable+0x342
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\util\mmap.h(267)                                   mongo::MemoryMappedFile::makeWritable+0x56
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\db\dur_commitjob.cpp(127)                          mongo::dur::DurableImpl::declareWriteIntent+0x69
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\db\dur.cpp(224)                                    mongo::dur::DurableImpl::writingPtr+0xf
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\db\namespace_details.cpp(400)                      mongo::NamespaceDetails::__stdAlloc+0x26a
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\db\namespace_details.cpp(272)                      mongo::NamespaceDetails::alloc+0x52
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\db\pdfile.cpp(1722)                                mongo::DataFileMgr::insert+0xa77
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\db\pdfile.cpp(1328)                                mongo::DataFileMgr::insertWithObjMod+0x55
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\db\instance.cpp(804)                               mongo::checkAndInsert+0x155
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\db\instance.cpp(877)                               mongo::receivedInsert+0xb0c
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\db\instance.cpp(441)                               mongo::assembleResponse+0x57a
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\db\db.cpp(194)                                     mongo::MyMessageHandler::process+0xfa
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\mongo\util\net\message_server_port.cpp(207)              mongo::PortMessageServer::handleIncomingMsg+0x578
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    ...\src\third_party\boost\libs\thread\src\win32\thread.cpp(180)  boost::`anonymous namespace'::thread_start_function+0x21
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    f:\dd\vctools\crt_bld\self_64_amd64\crt\src\threadex.c(314)      _callthreadstartex+0x17
+Wed Apr 13 11:37:10.429 [conn192] mongod.exe    f:\dd\vctools\crt_bld\self_64_amd64\crt\src\threadex.c(292)      _threadstartex+0x7f
+Wed Apr 13 11:37:10.429 [conn192] kernel32.dll                                                                   BaseThreadInitThunk+0xd
+Wed Apr 13 11:37:10.429 [conn192] 
+
+***aborting after fassert() failure
+
+

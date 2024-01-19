@@ -1,0 +1,132 @@
+
+#login-box {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -180px;
+	margin-left: -218px;
+	text-align: left;
+	width:320px;
+	height: 290px;
+	padding: 40px 58px 30px 58px;
+	color: #ebebeb;
+	font: 12px Arial, Helvetica, sans-serif;
+	background: url("../images/login/login-box-backg.png") no-repeat left top;
+	-webkit-box-reflect: below 5px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.80, transparent), to(white));
+}
+
+#login-box img {
+	border:none;
+}
+
+#login-box h2 {
+	padding:0;
+	margin:0;
+	color: #ebebeb;
+	font: bold 44px "Calibri", Arial;
+}
+
+#login-box-name {
+	float: left;
+	display:inline;
+	width:80px;
+	text-align: right;
+	padding: 14px 10px 0 0;
+	margin:0 0 7px 0;
+}
+
+#login-box-field {
+	float: left;
+	display:inline;
+	width:230px;
+	margin:0;
+	margin:0 0 7px 0;
+}
+
+.form-login  {
+	width: 205px;
+	padding: 10px 4px 6px 3px;
+	border: 1px solid #0d2c52;
+	background-color:#1e4f8a;
+	font-size: 16px;
+	color: #ebebeb;
+}
+
+.login-box-options  {
+	clear:both;
+	padding-left:87px;
+	font-size: 11px;
+}
+
+.login-box-options a {
+	color: #ebebeb;
+	font-size: 11px;
+}
+
+#msj{
+	margin:0 auto 0 auto;
+	display: none;
+	color: #000;
+	min-height:30px;
+	max-width:400px;
+	top: 35px;
+	overflow-x: hidden;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	z-index: 10002;
+	border:#A7A7A7 2px solid;
+	background-color:#FBEC88;
+}
+
+#msj .texto {
+	margin-left:30px;
+	margin-right:10px;
+	margin-top:3px;
+	word-wrap:break-word;
+	max-height:250px;
+	max_width:400px;
+	text-align:center;
+	overflow: hidden;
+	color:#3D6AA3;
+	font-family:Verdana, Geneva, sans-serif;
+	text-shadow: 1px 1px 1px #FFF;
+}
+
+#msj .cerrar {
+	/*display: block;*/
+	float: right;
+	height:10px;
+}
+
+#msj_inline{
+	color: #000;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+#msj_inline_1{
+	color: #000;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	min-height:230px;
+}
+.button_class{
+	background:url("../images/login/login-btn.png");
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	overflow: hidden;
+	text-decoration: none;
+	width:103px;
+	height:42px;
+	margin-left:90px;
+	word-wrap:break-word;
+	color:#FFF;
+	text-shadow: 1px 1px 0px #000;
+	outline: none;
+	font-size: 20px;
+	font-family: Verdana, Geneva, sans-serif;
+}

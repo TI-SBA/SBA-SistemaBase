@@ -1,0 +1,2 @@
+<span id="No-Results">No se encontraron items.</span>
+<span id="Results">Mostrando <strong><span name="showing">0</span></strong> <span name="obj">items</span> de <strong><span name="founded">0</span></strong> encontrados.</span>
